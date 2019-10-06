@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1570371486106.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4DFE8BBC",
+    "lastKnownWriteTime" : 1570370791,
+    "last_content_update" : 1570370791,
+    "path" : "~/wenzheng/Report-Statistics-SAR-master /Codes/SAR_estimationCode.R",
+    "project_path" : "SAR_estimationCode.R",
+    "properties" : {
+        "cursorPosition" : "18,50",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

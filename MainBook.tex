@@ -1,0 +1,220 @@
+\documentclass[a4paper]{tufte-book} % Use the tufte-book class which in turn uses the tufte-common class
+
+\hypersetup{colorlinks} % Comment this line if you don't wish to have colored links
+\usepackage{microtype} % Improves character and word spacing
+\usepackage{booktabs} % Better horizontal rules in tables
+
+\usepackage{texnames}
+\usepackage{epigraph}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{bm,bbm}
+\usepackage[]{subfig}
+\usepackage[binary-units]{siunitx}
+
+\usepackage[T1]{fontenc}
+\usepackage{bbding}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{exer}{Exercise}[chapter]
+
+\usepackage{listings}
+\lstset{language=R}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{framextopmargin=5pt,frame=bottomline}
+
+\usepackage{graphicx} % Needed to insert images into the document
+\graphicspath{{./Figures/}} % Sets the default location of pictures
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Improves figure scaling
+
+\usepackage{fancyvrb} % Allows customization of verbatim environments
+\fvset{fontsize=\normalsize} % The font size of all verbatim text can be changed here
+
+\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}} % New command to create parentheses around text in tables which take up no horizontal space - this improves column spacing
+\newcommand{\hangstar}{\makebox[0pt][l]{*}} % New command to create asterisks in tables which take up no horizontal space - this improves column spacing
+
+\newcommand{\E}{\operatorname{E}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\CV}{\operatorname{CV}}
+
+\usepackage{xspace} % Used for printing a trailing space better than using a tilde (~) using the \xspace command
+
+\newcommand{\monthyear}{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\space\number\year} % A command to print the current month and year
+
+\newcommand{\openepigraph}[2]{ % This block sets up a command for printing an epigraph with 2 arguments - the quote and the author
+\begin{fullwidth}
+\sffamily\large
+\begin{doublespace}
+\noindent\allcaps{#1}\\ % The quote
+\noindent\allcaps{#2} % The author
+\end{doublespace}
+\end{fullwidth}
+}
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage} % Command to insert a blank page
+
+\usepackage{makeidx} % Used to generate the index
+\makeindex % Generate the index which is printed at the end of the document
+
+%----------------------------------------------------------------------------------------
+%	BOOK META-INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Operational\\ Statistics for\\ SAR Imagery} % Title of the book
+
+\author{Alejandro C.\ Frery,
+Jie Wu} % Author
+
+\publisher{Publisher Name} % Publisher
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter
+
+%----------------------------------------------------------------------------------------
+%	EPIGRAPH
+%----------------------------------------------------------------------------------------
+
+\thispagestyle{empty}
+\openepigraph{I can resist everything except temptation.}{Oscar Wilde, {\itshape Lady Windermere's Fan (1892)}}
+\vfill
+%\openepigraph{Quotation 2}{Author}
+%\vfill
+%\openepigraph{Quotation 3}{Author}
+
+%----------------------------------------------------------------------------------------
+
+\maketitle % Print the title page
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyright \copyright\ \the\year\ \thanklessauthor
+
+\par\smallcaps{Published by Alejandro C.\ Frery}
+
+\par\smallcaps{\url{https://github.com/acfrery/Statistics-SAR-Intensity.git
+}}
+
+\par License information.\index{license}
+
+\par\textit{First printing, \monthyear}
+\end{fullwidth}
+
+%----------------------------------------------------------------------------------------
+x
+\tableofcontents % Print the table of contents
+
+%----------------------------------------------------------------------------------------
+
+\listoffigures % Print a list of figures
+
+%----------------------------------------------------------------------------------------
+
+\listoftables % Print a list of tables
+
+%----------------------------------------------------------------------------------------
+%	DEDICATION PAGE
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage
+~\vfill
+\begin{doublespace}
+\noindent\fontsize{18}{22}\selectfont\itshape
+\nohyphenation
+Dedicated to my husband, my family, and my friends. They are the salt of my life.
+\end{doublespace}
+\vfill
+\vfill
+
+
+\cleardoublepage
+\chapter*{Foreword} % The asterisk leaves out this chapter from the table of contents
+
+\newthought{I have been thinking} of writing this book for a long time now.
+My first experience with such a challenge dates back to the eighties, with my then (and forever) advisor Prof.\ Oscar Bustos, at IMPA (\textit{Instituto de Matem\'atica Pura e Aplicada}, at Rio de Janeiro).
+I learned with him the necessary mindset for writing a long piece of scientific work, and the outcome had a warm reception\cite{BustosFrery:92:ABE}.
+
+I jumped into my second experience, during a post-doc back at IMPA, about twenty years later.
+It was a completely different challenge: producing the second, and enlarged, edition of an already successful book, also with a very nice outcome\cite{IPVG:2008}.
+While working on this book I started feeling the need of some kind of control version for a collaborative work.
+
+Writing this second book I noticed that the information about image processing with \texttt R\cite{Rmanual} was scattered in half a dozen libraries, and that the experienced gained with the book might deserve writing a book, albeit a short one.
+The opportunity came with a generous offer from Springer to write our \textit{Introduction to Image Processing with \texttt R: Learning by Examples}\cite{IntroImageProcessingR}.
+
+One year before that book I received an invitation to contribute with a chapter for the book \textit{Digital Document Analysis and Processing}\cite{DigitalDocumentAnalysisProcessing}.
+This challenge brought me back to the need to collaborate in a remote fashion, but this time with a team of more than twenty authors.
+
+So I was invited this year to give a twenty-hour course on statistical tools for Synthetic Aperture Radar -- SAR imagery analysis at CONAE -- \textit{Comisi\'on Nacional de Actividades Espaciales}, Argentina.
+I wanted to make a course that would leave a positive residue:
+students would have the chance to learn and practice, and in order to do that I decided to use and share all the contents in \texttt{RMarkdown}.
+It was a nice experience, but I felt limitations (mostly mine) with such platform.
+When I was later invited to produce material for a sixty-hour distance education course, my first challenge was deciding the format.
+After pondering a couple of possibilities, I opted for a classical book.
+
+To date (6 September 2019), this book has served for the following courses:
+\begin{itemize}
+	\item Course at the Northwest Institute of Eco-Environment and Resources, Lanzhou, China (8 hours, February 2017)
+	\item Course at the Universidad Nacional General Sarmiento, Argentina (20 hours, May 2019)
+	\item Summer Course at Xiamen University, China (15 hours, July 2019).
+	\item Course at Xidian University, China (16 hours, September 2019)
+\end{itemize}
+I would like to thank the patience of Prof.\ Yie Wu, School of Computer Science, Shaanxi Normal University, Xi'an, for his careful reading and excellent suggestions.
+
+One of the books that exerted the strongest influence in my career was \textit{The Visual Display of Quantitative Information}\cite{Tufte01}.
+The choice of style was obvious after knowing that there was one inspired by Edward Tufte's ideas and guidelines, and implemented in \LaTeX.
+The patient reader that reached this point has an example of his recommendations put to work.
+
+Writing a book is a frightening task, but I have learned a few lessons from the past, among them:
+\begin{itemize}
+\item Reading with the eyes of the public helps staying focused.
+\item Using \LaTeX\ and \BibTeX\ is absolutely mandatory for quality results.
+\item Control version (Git in this case) is a safety net.
+\end{itemize}
+
+So here we go with this book.
+I hope it will be helpful to those that have the curiosity to browse through its pages.
+
+\vskip5em
+\epigraph{Alejandro C.\ Frery}{Macei\'o, 10 October 2017 -- \today}
+
+
+
+
+\mainmatter
+
+
+\include{Introduction}
+\include{ElementsR}
+\include{DataFormation}
+\include{MultiplicativeModel}
+\include{DescriptiveVisualization}
+\include{ParameterEstimation}
+\include{Applications}
+\include{AdvancedTopics}
+
+\backmatter
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliography{./Misc/BookRefs} % Use the bibliography.bib file for the bibliography
+\bibliographystyle{plainnat} % Use the plainnat style of referencing
+
+%----------------------------------------------------------------------------------------
+
+\printindex % Print the index at the very end of the document=≠
+
+\end{document}
